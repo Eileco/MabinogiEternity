@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Monsters>
+  <Monster  id="1"  name="蜗牛兽"         level="1"  hp="15"   attack="3"   catchcost="5"   worth="3"  probability="0.8"   headImage="1boluo"/>
+  <Monster  id="2"  name="小黄鸡"         level="1"  hp="9"    attack="5"   catchcost="5"   worth="3"  probability="0.8"   headImage="2xigua"/>
+  <Monster  id="3"  name="小乌贼"         level="1"  hp="11"   attack="5"   catchcost="5"   worth="3"  probability="0.8"   headImage="3kefu"/>
+  <Monster  id="4"  name="蓝蛇怪"         level="1"  hp="10"   attack="5"   catchcost="5"   worth="3"  probability="0.8"   headImage="4labbg"/>
+  <Monster  id="5"  name="小萝卜"         level="1"  hp="10"   attack="5"   catchcost="5"   worth="3"  probability="0.8"   headImage="5star"/>
+  <Monster  id="6"  name="宝箱怪"         level="1"  hp="10"  attack="1"   catchcost="5"   worth="3"  probability="0.8"   headImage="js2"/>
+  <Monster  id="7"  name="小苹果"         level="1"  hp="10"   attack="1"   catchcost="5"   worth="3"  probability="0.8"   headImage="jsk_00"/>
+  <Monster  id="8"  name="巴努兽"         level="1"  hp="10"   attack="4"   catchcost="5"   worth="3"  probability="0.8"   headImage="jump"/>
+
+  <Monster  id="9"   name="小章鱼"       level="2"  hp="20"   attack="8"    catchcost="20"   worth="8"  probability="0.7"   headImage="jxjt"/>
+  <Monster  id="10"  name="僵尸熊"       level="2"  hp="20"   attack="8"    catchcost="20"   worth="8"  probability="0.7"   headImage="kongdiandian"/>
+  <Monster  id="11"  name="小羊兽"       level="2"  hp="10"   attack="10"   catchcost="20"   worth="8"  probability="0.7"   headImage="lansebuffzhuagntai"/>
+  <Monster  id="12"  name="胡萝卜拳手"   level="2"  hp="15"   attack="9"    catchcost="20"   worth="8"  probability="0.7"   headImage="libao"/>
+  <Monster  id="13"  name="长牙怪"       level="2"  hp="30"   attack="3"    catchcost="20"   worth="8"  probability="0.7"   headImage="shengjituan"/>
+  <Monster  id="14"  name="千足蛙"       level="2"  hp="30"   attack="5"    catchcost="20"   worth="8"  probability="0.7"   headImage="shezhi"/>
+  <Monster  id="15"  name="混种蜗牛"     level="2"  hp="40"   attack="10"   catchcost="20"   worth="8"  probability="0.7"   headImage="shop"/>
+
+  <Monster  id="16"  name="卡布拉怪"     level="3"  hp="35"   attack="10"   catchcost="40"   worth="10"  probability="0.6"   headImage="skill_huoqiu"/>
+  <Monster  id="17"  name="洋葱头"       level="3"  hp="30"   attack="8"   catchcost="40"   worth="10"  probability="0.6"   headImage="skill_zhiliao"/>
+  <Monster  id="18"  name="香蕉侠"       level="3"  hp="45"   attack="15"   catchcost="40"   worth="10"  probability="0.6"   headImage="suo"/>
+  <Monster  id="19"  name="章鱼王"       level="3"  hp="50"   attack="10"   catchcost="40"   worth="10"  probability="0.6"   headImage="tequan"/>
+  <Monster  id="20"  name="派拉斯"       level="3"  hp="35"   attack="10"   catchcost="40"   worth="10"  probability="0.6"   headImage="tuichu"/>
+
+  <Monster  id="21"  name="胡萝卜船长"  level="4"  hp="65"   attack="30"   catchcost="60"   worth="12"  probability="0.5"   headImage="tx_01"/>
+  <Monster  id="22"  name="肥蜥蜴"      level="4"  hp="45"   attack="20"   catchcost="60"   worth="12"  probability="0.5"   headImage="tx_02"/>
+  <Monster  id="23"  name="紫茄兽"      level="4"  hp="55"   attack="15"   catchcost="60"   worth="12"  probability="0.5"   headImage="tx_03"/>
+  <Monster  id="24"  name="盲眼鸟"      level="4"  hp="50"   attack="25"   catchcost="60"   worth="12"  probability="0.5"   headImage="tx_04"/>
+  <Monster  id="25"  name="花椰菜"      level="4"  hp="75"   attack="20"   catchcost="60"   worth="12"  probability="0.5"   headImage="tx_05"/>
+  <Monster  id="26"  name="嘎啦"        level="4"  hp="55"   attack="25"   catchcost="60"   worth="12"  probability="0.5"   headImage="tx_06"/>
+  <Monster  id="27"  name="独眼布欧"    level="4"  hp="85"   attack="15"   catchcost="60"   worth="12"  probability="0.5"   headImage="tx_07"/>
+
+</Monsters>
