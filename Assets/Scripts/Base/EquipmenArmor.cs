@@ -9,24 +9,11 @@ using UnityEngine;
 
 public class EquipmentArmor : Equipment
 {
-    private ArmorType armorType;                     // 防具类型
     private ArmorTextureType armorTextureType;       // 防具材质类型
     private int defence;                             // 防御值
     private int armour;                              // 护甲值
 
     #region 字段封装
-    public ArmorType ArmorType
-    {
-        get
-        {
-            return armorType;
-        }
-
-        set
-        {
-            armorType = value;
-        }
-    }
 
     public ArmorTextureType ArmorTextureType
     {

@@ -48,15 +48,66 @@ public class UIEquipmentBag : MonoBehaviour {
     /// </summary>
     public bool AddEquipmentToBag(Equipment equipment)
     {
+        if (CharacterBag.Instance.CurEquipCount >= 7)
+        {
+            //扩容content size
+            RectTransform contentRect = bagContentContainer.GetComponent<RectTransform>();
+            float rectHeight = contentRect.rect.height;
+            contentRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, rectHeight + 60);
+        }
         //初始化预制体并添加到container
         GameObject itemCell = GameObject.Instantiate(prefabItemCell);
         itemCell.transform.SetParent(bagContentContainer.transform,false);
         if (equipment != null)
         {
-
+            //装备图标
+            Image itemImage = itemCell.transform.Find("ItemImage").GetComponent<Image>();
+            string itemImagePath = equipment.ItemImage;
+            itemImage.sprite = Resources.Load(itemImagePath, typeof(Sprite)) as Sprite;
+            //装备名
+            Text itemName = itemCell.transform.Find("TextEquipName").GetComponent<Text>();
+            string itemNameStr = equipment.ItemName;
+            int equipmentEnhance = equipment.EnhanceLevel;
+            string enhanceLevelStr = equipmentEnhance.ToString();
+            itemName.text = itemNameStr + "  " + enhanceLevelStr;
+            ChangeEquipmentColor(equipment, itemName);
         }
 
         return false;
+    }
+
+    /// <summary>
+    /// 根据装备品质改变装备名字颜色
+    /// </summary>
+    public void ChangeEquipmentColor(Equipment equipment, Text text)
+    {
+        if (text == null)
+        {
+            return;
+        }
+        switch (equipment.EquipmentQualityType)
+        {
+            case EquipmentQualityType.EQT_ORDINARY:
+                text.color = Macro.Instance.ORE_COLOR_RGB;
+                break;
+            case EquipmentQualityType.EQT_GOOD:
+                text.color = Macro.Instance.GOOD_COLOR_RGB;
+                break;
+            case EquipmentQualityType.EQT_EXCELLENT:
+                text.color = Macro.Instance.EXCE_COLOR_RGB;
+                break;
+            case EquipmentQualityType.EQT_PERFECT:
+                text.color = Macro.Instance.PREF_COLOR_RGB;
+                break;
+            case EquipmentQualityType.EQT_EPIC:
+                text.color = Macro.Instance.EPIC_COLOR_RGB;
+                break;
+            case EquipmentQualityType.EQT_LEGEND:
+                text.color = Macro.Instance.LEG_COLOR_RGB;
+                break;
+            default:
+                break;
+        }
     }
 
 }

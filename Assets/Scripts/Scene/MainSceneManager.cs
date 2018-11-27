@@ -12,7 +12,7 @@ public class MainSceneManager : MonoBehaviour
 
     private void Awake()
     {
-        
+        CharacterBag.Instance.InitBag();
     }
 
     void Start ()
@@ -49,7 +49,9 @@ public class MainSceneManager : MonoBehaviour
         UIActiveSkill._instance.AddSkillCell(SkillType.SKT_NONE, "十大", 13);
         UIActiveSkill._instance.AddSkillCell(SkillType.SKT_NONE, "公司", 14);
         UIActiveSkill._instance.ResetScrollView();
-        EquipmentWeapon equipmentWeapon =  Create.Instance.CreateEquipmentPrimaryWeapon();
+
+        //生成5把主武器
+        CharacterBag.Instance.AddEquipmentToBag(EquipmentType.EPT_PRIMARY_WEAPON,5);
     }
 
     void Update ()

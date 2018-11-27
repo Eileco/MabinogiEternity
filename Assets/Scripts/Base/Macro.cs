@@ -147,17 +147,33 @@ public enum MenuBtnLocation
     MBL_PET,                     // 末位置 宠物按钮位置
 }
 
-public class Macro
+public class Macro : Singleton<Macro>
 {
     // 实时战况信息cell最大数量
     public const int REALTIME_CELL_MAX_COUNT = 60;
 
     /*  资源路径   */
-    public const string BAG_ITEM_CELL_PATH = "PrefabItemCell";                 //背包装备Prefab
-    public const string ACTIVE_SKILL_CELL_PATH = "PrefabActiveSkillCell";      //技能释放Prefab
-    public const string REALTIME_CELL_PATH = "PrefabRealTimeCell";             //实时信息Prefab
-    public const string TITLE_CELL_PATH = "PrefabTitleCell";                   //称号Prefab
-    public const string SKILL_CELL_PATH = "PrefabSkillCell";                   //技能Prefab
+    public const string BAG_ITEM_CELL_PATH = "PrefabItemCell";                 // 背包装备Prefab
+    public const string ACTIVE_SKILL_CELL_PATH = "PrefabActiveSkillCell";      // 技能释放Prefab
+    public const string REALTIME_CELL_PATH = "PrefabRealTimeCell";             // 实时信息Prefab
+    public const string TITLE_CELL_PATH = "PrefabTitleCell";                   // 称号Prefab
+    public const string SKILL_CELL_PATH = "PrefabSkillCell";                   // 技能Prefab
+
+
+    /*  品质颜色   */
+    public Color32 ORE_COLOR_RGB = new Color32(100, 100, 100, 255);            // 普通
+    public const string ORE_COLOR = "646464";
+    public Color32 GOOD_COLOR_RGB = new Color32(25, 225, 0, 255);              // 优秀
+    public const string GOOD_COLOR = "19E100";
+    public Color32 EXCE_COLOR_RGB = new Color32(0, 50, 225, 255);              // 精良
+    public const string EXCE_COLOR = "0032E1";                     
+    public Color32 PREF_COLOR_RGB = new Color32(200, 200, 0, 255);             // 完美
+    public const string PREF_COLOR = "C8C800";                                 
+    public Color32 EPIC_COLOR_RGB = new Color32(255, 25, 225, 255);            // 史诗
+    public const string EPIC_COLOR = "FF19E1";                                 
+    public Color32 LEG_COLOR_RGB = new Color32(255, 66, 0, 255);               // 传说
+    public const string LEG_COLOR = "FF4200";                                  
+    
 
 
 }

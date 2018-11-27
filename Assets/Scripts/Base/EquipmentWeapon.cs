@@ -10,8 +10,6 @@ using UnityEngine;
 public class EquipmentWeapon : Equipment
 {
     private WeaponAttackType atkType;               // 武器攻击类型
-    private PrimaryWeaponType primaryWeaponType;    // 主武器类型
-    private SecondaryWeaponType secondaryWeaponType;// 副武器类型
     private int minAtk;                             // 武器最小攻击
     private int maxAtk;                             // 武器最大攻击
     private int balance;                            // 平衡
@@ -80,32 +78,6 @@ public class EquipmentWeapon : Equipment
         set
         {
             criticalChance = value;
-        }
-    }
-
-    public PrimaryWeaponType PrimaryWeaponType
-    {
-        get
-        {
-            return primaryWeaponType;
-        }
-
-        set
-        {
-            primaryWeaponType = value;
-        }
-    }
-
-    public SecondaryWeaponType SecondaryWeaponType
-    {
-        get
-        {
-            return secondaryWeaponType;
-        }
-
-        set
-        {
-            secondaryWeaponType = value;
         }
     }
     #endregion

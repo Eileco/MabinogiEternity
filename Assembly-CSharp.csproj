@@ -62,8 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Algorithm\Battle.cs" />
-    <Compile Include="Assets\Scripts\Algorithm\Create.cs" />
     <Compile Include="Assets\Scripts\Algorithm\Enhance.cs" />
+    <Compile Include="Assets\Scripts\Algorithm\ItemCreate.cs" />
     <Compile Include="Assets\Scripts\Base\EquipmenArmor.cs" />
     <Compile Include="Assets\Scripts\Base\Equipment.cs" />
     <Compile Include="Assets\Scripts\Base\EquipmentAccessories.cs" />
@@ -105,16 +105,16 @@
     <Compile Include="Assets\Scripts\XML\DataManager.cs" />
     <None Include="Assets\Scripts\XML\XMLData.xml" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>D:/UnityProjects/MabinogiEternity/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>D:/MabinogiEternity/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/UnityProjects/MabinogiEternity/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/MabinogiEternity/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/UnityProjects/MabinogiEternity/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>D:/MabinogiEternity/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/UnityProjects/MabinogiEternity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/MabinogiEternity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Unity/Unity2018.2.16/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

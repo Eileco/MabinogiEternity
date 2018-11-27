@@ -7,22 +7,7 @@ using UnityEngine;
  *    饰品各项属性
 /* ////////////////*/
 
-public class AccessoriesEquipment : Equipment
+public class EquipmentAccessories : Equipment
 {
-    private AccessoriesType accessoriesType;               // 饰品类型
-
-    #region 字段封装
-    public AccessoriesType AccessoriesType
-    {
-        get
-        {
-            return accessoriesType;
-        }
-
-        set
-        {
-            accessoriesType = value;
-        }
-    }
-    #endregion
+    
 }
