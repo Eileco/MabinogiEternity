@@ -36,32 +36,32 @@ public class ItemCreate : Singleton<ItemCreate>
             {
                 case (int)PrimaryWeaponType.PWT_SWORD:
                     primWeapon.EquipmentRegionType = EquipmentRegionType.ERT_SINGLE_HAND;           // 装备部位                
-                    primWeapon.PrimaryWeaponType = PrimaryWeaponType.PWT_SWORD;                     // 武器类型
+                    primWeapon.EquipmentSubType = EquipmentSubType.EPT_SWORD;                       // 武器类型
                     primWeapon.AtkType = WeaponAttackType.WAT_MELEE;                                // 攻击类型   
                     break;
                 case (int)PrimaryWeaponType.PWT_AXE:
                     primWeapon.EquipmentRegionType = EquipmentRegionType.ERT_TWO_HAND;              // 装备部位                    
-                    primWeapon.PrimaryWeaponType = PrimaryWeaponType.PWT_AXE;                       // 武器类型
+                    primWeapon.EquipmentSubType = EquipmentSubType.EPT_AXE;                         // 武器类型
                     primWeapon.AtkType = WeaponAttackType.WAT_MELEE;                                // 攻击类型 
                     break;
                 case (int)PrimaryWeaponType.PWT_BOW:
                     primWeapon.EquipmentRegionType = EquipmentRegionType.ERT_TWO_HAND;              // 装备部位           
-                    primWeapon.PrimaryWeaponType = PrimaryWeaponType.PWT_BOW;                       // 武器类型
+                    primWeapon.EquipmentSubType = EquipmentSubType.EPT_BOW;                         // 武器类型
                     primWeapon.AtkType = WeaponAttackType.WAT_RANGED;                               // 攻击类型             
                     break;
                 case (int)PrimaryWeaponType.PWT_CROSSBOW:
                     primWeapon.EquipmentRegionType = EquipmentRegionType.ERT_TWO_HAND;              // 装备部位
-                    primWeapon.PrimaryWeaponType = PrimaryWeaponType.PWT_CROSSBOW;                  // 武器类型
+                    primWeapon.EquipmentSubType = EquipmentSubType.EPT_CROSSBOW;                    // 武器类型
                     primWeapon.AtkType = WeaponAttackType.WAT_RANGED;                               // 攻击类型 
                     break;
                 case (int)PrimaryWeaponType.PWT_WAND:
                     primWeapon.EquipmentRegionType = EquipmentRegionType.ERT_SINGLE_HAND;           // 装备部位
-                    primWeapon.PrimaryWeaponType = PrimaryWeaponType.PWT_WAND;                      // 武器类型
+                    primWeapon.EquipmentSubType = EquipmentSubType.EPT_WAND;                        // 武器类型
                     primWeapon.AtkType = WeaponAttackType.WAT_MAGIC;                                // 攻击类型 
                     break;
                 case (int)PrimaryWeaponType.PWT_STAFF:
                     primWeapon.EquipmentRegionType = EquipmentRegionType.ERT_TWO_HAND;              // 装备部位
-                    primWeapon.PrimaryWeaponType = PrimaryWeaponType.PWT_STAFF;                     // 武器类型
+                    primWeapon.EquipmentSubType = EquipmentSubType.EPT_STAFF;                       // 武器类型
                     primWeapon.AtkType = WeaponAttackType.WAT_MAGIC;                                // 攻击类型 
                     break;
                 default:
@@ -69,9 +69,8 @@ public class ItemCreate : Singleton<ItemCreate>
                     return null;
             }
             //共有属性                                  
-            primWeapon.SecondaryWeaponType = SecondaryWeaponType.SWT_NONE;
             primWeapon.ItemType = ItemType.IT_EQUIPMENT;                                        // 物品类型
-            primWeapon.EquipmentType = EquipmentType.EPT_PRIMARY_WEAPON;                        // 装备类型
+            primWeapon.EquipmentMainType = EquipmentMainType.EPMT_PRIMARY_WEAPON;               // 装备类型
             primWeapon.EquipmentQualityType = CalculateQualityType(intRands[index++]);          // 装备品质
             primWeapon.EnhanceLevel = 0;                                                        // 强化等级
             primWeapon.MinAtk = CalculateEquipmentAtk(intRands[index++]);                       // 最小攻击力
@@ -80,8 +79,8 @@ public class ItemCreate : Singleton<ItemCreate>
             primWeapon.CriticalChance = CalculateEquipmentCritical(intRands[index++]);          // 暴击
             primWeapon.ItemName = GetEquipmentName(primWeapon);                                 // 名字
             primWeapon.ItemImage = GetEquipmentImage(primWeapon);                               // 装备图标  
-                                                                                                //TODO
-                                                                                                //生成词缀
+            //TODO
+            //生成词缀
 
             primWeapon.ItemPrice = CalculateEquipmentPrice(primWeapon);
 
@@ -95,7 +94,7 @@ public class ItemCreate : Singleton<ItemCreate>
     /// <summary>
     /// 随机生成1把副武器
     /// </summary>
-    public EquipmentWeapon CreateEquipmentSecondaryWeapon()
+    public EquipmentWeapon[] CreateEquipmentSecondaryWeapon(int weaponCount)
     {
         //生成一个随机数数组
         System.Random rm = new System.Random();
@@ -105,57 +104,64 @@ public class ItemCreate : Singleton<ItemCreate>
         int randEquipmentType = 0;    // 随机武器类型
         if (index <= intRands.Count)
         {
-            randEquipmentType = intRands[index] % 6 + 1;
+            randEquipmentType = intRands[index] % 3 + 1;
             index++;
         }
 
-        //随机生成武器
-        EquipmentWeapon secdWeapon = new EquipmentWeapon();
-        switch (randEquipmentType)
+        //存储数组
+        EquipmentWeapon[] weapons = new EquipmentWeapon[weaponCount];
+        for (int i = 0; i < weaponCount; i++)
         {
-            case (int)SecondaryWeaponType.SWT_DAGGER:
-                secdWeapon.EquipmentRegionType = EquipmentRegionType.ERT_OFF_HAND;              // 装备部位                
-                secdWeapon.SecondaryWeaponType = SecondaryWeaponType.SWT_DAGGER;                // 武器类型
-                secdWeapon.AtkType = WeaponAttackType.WAT_MELEE;                                // 攻击类型   
-                break;
-            case (int)SecondaryWeaponType.SWT_SHIELD:
-                secdWeapon.EquipmentRegionType = EquipmentRegionType.ERT_OFF_HAND;              // 装备部位                
-                secdWeapon.SecondaryWeaponType = SecondaryWeaponType.SWT_SHIELD;                // 武器类型
-                secdWeapon.AtkType = WeaponAttackType.WAT_MELEE;                                // 攻击类型 
-                break;
-            case (int)SecondaryWeaponType.SWT_BOOK:
-                secdWeapon.EquipmentRegionType = EquipmentRegionType.ERT_OFF_HAND;              // 装备部位                
-                secdWeapon.SecondaryWeaponType = SecondaryWeaponType.SWT_BOOK;                  // 武器类型
-                secdWeapon.AtkType = WeaponAttackType.WAT_MAGIC;                                // 攻击类型             
-                break;
-            default:
-                Debug.Log("CreateEquipmentPrimaryWeapon Index ERROR");
-                return null;
+            //随机生成武器
+            EquipmentWeapon secdWeapon = new EquipmentWeapon();
+            switch (randEquipmentType)
+            {
+                case (int)SecondaryWeaponType.SWT_DAGGER:
+                    secdWeapon.EquipmentRegionType = EquipmentRegionType.ERT_OFF_HAND;              // 装备部位                
+                    secdWeapon.EquipmentSubType = EquipmentSubType.EPT_DAGGER;                      // 武器类型
+                    secdWeapon.AtkType = WeaponAttackType.WAT_MELEE;                                // 攻击类型   
+                    break;
+                case (int)SecondaryWeaponType.SWT_SHIELD:
+                    secdWeapon.EquipmentRegionType = EquipmentRegionType.ERT_OFF_HAND;              // 装备部位                
+                    secdWeapon.EquipmentSubType = EquipmentSubType.EPT_SHIELD;                      // 武器类型
+                    secdWeapon.AtkType = WeaponAttackType.WAT_MELEE;                                // 攻击类型 
+                    break;
+                case (int)SecondaryWeaponType.SWT_BOOK:
+                    secdWeapon.EquipmentRegionType = EquipmentRegionType.ERT_OFF_HAND;              // 装备部位                
+                    secdWeapon.EquipmentSubType = EquipmentSubType.EPT_BOOK;                        // 武器类型
+                    secdWeapon.AtkType = WeaponAttackType.WAT_MAGIC;                                // 攻击类型             
+                    break;
+                default:
+                    Debug.Log("CreateEquipmentPrimaryWeapon Index ERROR");
+                    return null;
+            }
+            //共有属性                                  
+            secdWeapon.ItemType = ItemType.IT_EQUIPMENT;                                        // 物品类型
+            secdWeapon.EquipmentMainType = EquipmentMainType.EPMT_SECONDARY_WEAPON;             // 装备类型
+            secdWeapon.EquipmentQualityType = CalculateQualityType(intRands[index++]);          // 装备品质
+            secdWeapon.EnhanceLevel = 0;                                                        // 强化等级
+            secdWeapon.MinAtk = CalculateEquipmentAtk(intRands[index++]);                       // 最小攻击力
+            secdWeapon.MaxAtk = secdWeapon.MinAtk + CalculateEquipmentAtk(intRands[index++]);   // 最大攻击力
+            secdWeapon.Balance = CalculateEquipmentBalance(intRands[index++]);                  // 平衡
+            secdWeapon.CriticalChance = CalculateEquipmentCritical(intRands[index++]);          // 暴击
+            secdWeapon.ItemName = GetEquipmentName(secdWeapon);                                 // 名字
+            secdWeapon.ItemImage = GetEquipmentImage(secdWeapon);                               // 装备图标  
+                                                                                                //TODO
+                                                                                                //生成词缀
+
+            secdWeapon.ItemPrice = CalculateEquipmentPrice(secdWeapon);
+
+            weapons[i] = secdWeapon;
         }
-        //共有属性                                  
-        secdWeapon.PrimaryWeaponType = PrimaryWeaponType.PWT_NONE;
-        secdWeapon.ItemType = ItemType.IT_EQUIPMENT;                                        // 物品类型
-        secdWeapon.EquipmentType = EquipmentType.EPT_SECONDARY_WEAPON;                      // 装备类型
-        secdWeapon.EquipmentQualityType = CalculateQualityType(intRands[index++]);          // 装备品质
-        secdWeapon.EnhanceLevel = 0;                                                        // 强化等级
-        secdWeapon.MinAtk = CalculateEquipmentAtk(intRands[index++]);                       // 最小攻击力
-        secdWeapon.MaxAtk = secdWeapon.MinAtk + CalculateEquipmentAtk(intRands[index++]);   // 最大攻击力
-        secdWeapon.Balance = CalculateEquipmentBalance(intRands[index++]);                  // 平衡
-        secdWeapon.CriticalChance = CalculateEquipmentCritical(intRands[index++]);          // 暴击
-        secdWeapon.ItemName = GetEquipmentName(secdWeapon);                                 // 名字
-        secdWeapon.ItemImage = GetEquipmentImage(secdWeapon);                               // 装备图标  
-        //TODO
-        //生成词缀
 
-        secdWeapon.ItemPrice = CalculateEquipmentPrice(secdWeapon);
-
-        return secdWeapon;
+        //返回weaponCount个武器
+        return weapons;
     }
 
     /// <summary>
     /// 随机生成1件防具
     /// </summary>
-    public EquipmentArmor CreateEquipmentArmor()
+    public EquipmentArmor[] CreateEquipmentArmor(int armorCount)
     {
         //生成一个随机数数组
         System.Random rm = new System.Random();
@@ -165,84 +171,92 @@ public class ItemCreate : Singleton<ItemCreate>
         int randEquipmentType = 0;    // 随机装备类型
         if (index <= intRands.Count)
         {
-            randEquipmentType = intRands[index] % 6 + 1;
+            randEquipmentType = intRands[index] % 9 + 1;
             index++;
         }
 
-        //随机生成武器
-        EquipmentArmor armor = new EquipmentArmor();
-        switch (randEquipmentType)
+        //存储数组
+        EquipmentArmor[] armors = new EquipmentArmor[armorCount];
+        for (int i = 0; i < armorCount; i++)
         {
-            case (int)ArmorType.AMT_CLOTH_HELMET:
-                armor.EquipmentRegionType = EquipmentRegionType.ERT_HEAD;                  // 装备部位                
-                armor.ArmorType = ArmorType.AMT_CLOTH_ARMOUR;                              // 武器类型
-                armor.ArmorTextureType = ArmorTextureType.ATT_CLOTH;                       // 攻击类型   
-                break;
-            case (int)ArmorType.AMT_CLOTH_ARMOUR:
-                armor.EquipmentRegionType = EquipmentRegionType.ERT_BODY;                  // 装备部位                
-                armor.ArmorType = ArmorType.AMT_CLOTH_ARMOUR;                              // 武器类型
-                armor.ArmorTextureType = ArmorTextureType.ATT_CLOTH;                       // 攻击类型 
-                break;
-            case (int)ArmorType.AMT_CLOTH_SHOES:
-                armor.EquipmentRegionType = EquipmentRegionType.ERT_LEG;                   // 装备部位                
-                armor.ArmorType = ArmorType.AMT_CLOTH_ARMOUR;                              // 武器类型
-                armor.ArmorTextureType = ArmorTextureType.ATT_CLOTH;                       // 攻击类型              
-                break;
-            case (int)ArmorType.AMT_LEATHER_HELMET:
-                armor.EquipmentRegionType = EquipmentRegionType.ERT_HEAD;                  // 装备部位                
-                armor.ArmorType = ArmorType.AMT_LEATHER_HELMET;                            // 武器类型
-                armor.ArmorTextureType = ArmorTextureType.ATT_LEATHER;                     // 攻击类型              
-                break;
-            case (int)ArmorType.AMT_LEATHER_ARMOUR:
-                armor.EquipmentRegionType = EquipmentRegionType.ERT_BODY;                  // 装备部位                
-                armor.ArmorType = ArmorType.AMT_LEATHER_ARMOUR;                            // 武器类型
-                armor.ArmorTextureType = ArmorTextureType.ATT_LEATHER;                     // 攻击类型              
-                break;
-            case (int)ArmorType.AMT_LEATHER_SHOES:
-                armor.EquipmentRegionType = EquipmentRegionType.ERT_LEG;                   // 装备部位                
-                armor.ArmorType = ArmorType.AMT_LEATHER_SHOES;                             // 武器类型
-                armor.ArmorTextureType = ArmorTextureType.ATT_LEATHER;                     // 攻击类型              
-                break;
-            case (int)ArmorType.AMT_STEEL_HELMET:
-                armor.EquipmentRegionType = EquipmentRegionType.ERT_HEAD;                  // 装备部位                
-                armor.ArmorType = ArmorType.AMT_STEEL_HELMET;                              // 武器类型
-                armor.ArmorTextureType = ArmorTextureType.ATT_STEEL;                       // 攻击类型              
-                break;
-            case (int)ArmorType.AMT_STEEL_ARMOUR:
-                armor.EquipmentRegionType = EquipmentRegionType.ERT_BODY;                  // 装备部位                
-                armor.ArmorType = ArmorType.AMT_STEEL_ARMOUR;                              // 武器类型
-                armor.ArmorTextureType = ArmorTextureType.ATT_STEEL;                       // 攻击类型              
-                break;
-            case (int)ArmorType.AMT_STEEL_SHOES:
-                armor.EquipmentRegionType = EquipmentRegionType.ERT_LEG;                   // 装备部位                
-                armor.ArmorType = ArmorType.AMT_STEEL_SHOES;                               // 武器类型
-                armor.ArmorTextureType = ArmorTextureType.ATT_STEEL;                       // 攻击类型              
-                break;
-            default:
-                Debug.Log("CreateEquipmentPrimaryWeapon Index ERROR");
-                return null;
+            //随机生成武器
+            EquipmentArmor armor = new EquipmentArmor();
+            switch (randEquipmentType)
+            {
+                case (int)ArmorType.AMT_CLOTH_HELMET:
+                    armor.EquipmentRegionType = EquipmentRegionType.ERT_HEAD;                  // 装备部位                
+                    armor.EquipmentSubType = EquipmentSubType.EPT_CLOTH_HELMET;                              // 武器类型
+                    armor.ArmorTextureType = ArmorTextureType.ATT_CLOTH;                       // 攻击类型   
+                    break;
+                case (int)ArmorType.AMT_CLOTH_ARMOUR:
+                    armor.EquipmentRegionType = EquipmentRegionType.ERT_BODY;                  // 装备部位                
+                    armor.EquipmentSubType = EquipmentSubType.EPT_CLOTH_ARMOUR;                              // 武器类型
+                    armor.ArmorTextureType = ArmorTextureType.ATT_CLOTH;                       // 攻击类型 
+                    break;
+                case (int)ArmorType.AMT_CLOTH_SHOES:
+                    armor.EquipmentRegionType = EquipmentRegionType.ERT_LEG;                   // 装备部位                
+                    armor.EquipmentSubType = EquipmentSubType.EPT_CLOTH_SHOES;                              // 武器类型
+                    armor.ArmorTextureType = ArmorTextureType.ATT_CLOTH;                       // 攻击类型              
+                    break;
+                case (int)ArmorType.AMT_LEATHER_HELMET:
+                    armor.EquipmentRegionType = EquipmentRegionType.ERT_HEAD;                  // 装备部位                
+                    armor.EquipmentSubType = EquipmentSubType.EPT_LEATHER_HELMET;                            // 武器类型
+                    armor.ArmorTextureType = ArmorTextureType.ATT_LEATHER;                     // 攻击类型              
+                    break;
+                case (int)ArmorType.AMT_LEATHER_ARMOUR:
+                    armor.EquipmentRegionType = EquipmentRegionType.ERT_BODY;                  // 装备部位                
+                    armor.EquipmentSubType = EquipmentSubType.EPT_LEATHER_ARMOUR;                            // 武器类型
+                    armor.ArmorTextureType = ArmorTextureType.ATT_LEATHER;                     // 攻击类型              
+                    break;
+                case (int)ArmorType.AMT_LEATHER_SHOES:
+                    armor.EquipmentRegionType = EquipmentRegionType.ERT_LEG;                   // 装备部位                
+                    armor.EquipmentSubType = EquipmentSubType.EPT_LEATHER_SHOES;                             // 武器类型
+                    armor.ArmorTextureType = ArmorTextureType.ATT_LEATHER;                     // 攻击类型              
+                    break;
+                case (int)ArmorType.AMT_STEEL_HELMET:
+                    armor.EquipmentRegionType = EquipmentRegionType.ERT_HEAD;                  // 装备部位                
+                    armor.EquipmentSubType = EquipmentSubType.EPT_STEEL_HELMET;                              // 武器类型
+                    armor.ArmorTextureType = ArmorTextureType.ATT_STEEL;                       // 攻击类型              
+                    break;
+                case (int)ArmorType.AMT_STEEL_ARMOUR:
+                    armor.EquipmentRegionType = EquipmentRegionType.ERT_BODY;                  // 装备部位                
+                    armor.EquipmentSubType = EquipmentSubType.EPT_STEEL_ARMOUR;                              // 武器类型
+                    armor.ArmorTextureType = ArmorTextureType.ATT_STEEL;                       // 攻击类型              
+                    break;
+                case (int)ArmorType.AMT_STEEL_SHOES:
+                    armor.EquipmentRegionType = EquipmentRegionType.ERT_LEG;                   // 装备部位                
+                    armor.EquipmentSubType = EquipmentSubType.EPT_STEEL_SHOES;                               // 武器类型
+                    armor.ArmorTextureType = ArmorTextureType.ATT_STEEL;                       // 攻击类型              
+                    break;
+                default:
+                    Debug.Log("CreateEquipmentPrimaryWeapon Index ERROR");
+                    return null;
+            }
+            //共有属性                                  
+            armor.ItemType = ItemType.IT_EQUIPMENT;                                        // 物品类型
+            armor.EquipmentMainType = EquipmentMainType.EPMT_ARMOR;                                 // 装备类型
+            armor.EquipmentQualityType = CalculateQualityType(intRands[index++]);          // 装备品质
+            armor.EnhanceLevel = 0;                                                        // 强化等级
+            armor.Defence = CalculateEquipmentDefence(intRands[index++]);                  // 防御
+            armor.Armour = CalculateEquipmentArmor(intRands[index++]);                     // 护甲
+            armor.ItemName = GetEquipmentName(armor);                                      // 名字
+            armor.ItemImage = GetEquipmentImage(armor);                                    // 装备图标  
+                                                                                           //TODO
+                                                                                           //生成词缀
+
+            armor.ItemPrice = CalculateEquipmentPrice(armor);                              // 价值
+
+            armors[i] = armor;
         }
-        //共有属性                                  
-        armor.ItemType = ItemType.IT_EQUIPMENT;                                        // 物品类型
-        armor.EquipmentType = EquipmentType.EPT_ARMOR;                                 // 装备类型
-        armor.EquipmentQualityType = CalculateQualityType(intRands[index++]);          // 装备品质
-        armor.EnhanceLevel = 0;                                                        // 强化等级
-        armor.Defence = CalculateEquipmentDefence(intRands[index++]);                  // 防御
-        armor.Armour = CalculateEquipmentArmor(intRands[index++]);                     // 护甲
-        armor.ItemName = GetEquipmentName(armor);                                      // 名字
-        armor.ItemImage = GetEquipmentImage(armor);                                    // 装备图标  
-        //TODO
-        //生成词缀
+            
 
-        armor.ItemPrice = CalculateEquipmentPrice(armor);                              // 价值
-
-        return armor;
+        return armors;
     }
 
     /// <summary>
     /// 随机生成1件饰品
     /// </summary>
-    public EquipmentAccessories CreateEquipmentAccessories()
+    public EquipmentAccessories[] CreateEquipmentAccessories(int accessoriesCount)
     {
         //生成一个随机数数组
         System.Random rm = new System.Random();
@@ -252,37 +266,44 @@ public class ItemCreate : Singleton<ItemCreate>
         int randEquipmentType = 0;    // 随机武器类型
         if (index <= intRands.Count)
         {
-            randEquipmentType = intRands[index] % 6 + 1;
+            randEquipmentType = intRands[index] % 2 + 1;
             index++;
         }
 
-        //随机生成武器
-        EquipmentAccessories accessories = new EquipmentAccessories();
-        switch (randEquipmentType)
+        //存储数组
+        EquipmentAccessories[] accessories = new EquipmentAccessories[accessoriesCount];
+        for (int i = 0; i < accessoriesCount; i++)
         {
-            case (int)AccessoriesType.AST_RING:
-                accessories.EquipmentRegionType = EquipmentRegionType.ERT_HANDS;                 // 装备部位                
-                accessories.AccessoriesType = AccessoriesType.AST_RING;                          // 饰品类型
-                break;
-            case (int)AccessoriesType.AST_NECKLACE:
-                accessories.EquipmentRegionType = EquipmentRegionType.ERT_NECK;                  // 装备部位                
-                accessories.AccessoriesType = AccessoriesType.AST_NECKLACE;                      // 饰品类型
-                break;
-            default:
-                Debug.Log("CreateEquipmentPrimaryWeapon Index ERROR");
-                return null;
-        }
-        //共有属性                                  
-        accessories.ItemType = ItemType.IT_EQUIPMENT;                                        // 物品类型
-        accessories.EquipmentType = EquipmentType.EPT_SECONDARY_WEAPON;                      // 装备类型
-        accessories.EquipmentQualityType = CalculateQualityType(intRands[index++]);          // 装备品质
-        accessories.EnhanceLevel = 0;                                                        // 强化等级
-        accessories.ItemName = GetEquipmentName(accessories);                                 // 名字
-        accessories.ItemImage = GetEquipmentImage(accessories);                               // 装备图标  
-        //TODO
-        //生成词缀
+            //随机生成饰品
+            EquipmentAccessories accessory = new EquipmentAccessories();
+            switch (randEquipmentType)
+            {
+                case (int)AccessoriesType.AST_RING:
+                    accessory.EquipmentRegionType = EquipmentRegionType.ERT_HANDS;                 // 装备部位                
+                    accessory.EquipmentSubType = EquipmentSubType.EPT_RING;                          // 饰品类型
+                    break;
+                case (int)AccessoriesType.AST_NECKLACE:
+                    accessory.EquipmentRegionType = EquipmentRegionType.ERT_NECK;                  // 装备部位                
+                    accessory.EquipmentSubType = EquipmentSubType.EPT_NECKLACE;                      // 饰品类型
+                    break;
+                default:
+                    Debug.Log("CreateEquipmentPrimaryWeapon Index ERROR");
+                    return null;
+            }
+            //共有属性                                  
+            accessory.ItemType = ItemType.IT_EQUIPMENT;                                        // 物品类型
+            accessory.EquipmentMainType = EquipmentMainType.EPMT_ACCESSORY;                      // 装备类型
+            accessory.EquipmentQualityType = CalculateQualityType(intRands[index++]);          // 装备品质
+            accessory.EnhanceLevel = 0;                                                        // 强化等级
+            accessory.ItemName = GetEquipmentName(accessory);                                 // 名字
+            accessory.ItemImage = GetEquipmentImage(accessory);                               // 装备图标  
+                                                                                                //TODO
+                                                                                                //生成词缀
 
-        accessories.ItemPrice = CalculateEquipmentPrice(accessories);
+            accessory.ItemPrice = CalculateEquipmentPrice(accessory);
+
+            accessories[i] = accessory;
+        }    
 
         return accessories;
     }
@@ -294,14 +315,17 @@ public class ItemCreate : Singleton<ItemCreate>
     public EquipmentQualityType CalculateQualityType(int randNum)
     {
         int qualityTypeRand = randNum % 7 + 1;
+        if (qualityTypeRand < 1 || qualityTypeRand > 7)
+        {
+            Debug.Log("CreateEquipmentQualityType ERROR");
+        }
         foreach (EquipmentQualityType item in Enum.GetValues(typeof(EquipmentQualityType)))
         {
             if ((int)item == qualityTypeRand)
             {
                 return item;
             }
-        }
-        Debug.Log("CreateEquipmentQualityType ERROR");
+        }     
         return EquipmentQualityType.EQT_EXCELLENT;
     }
 
@@ -322,9 +346,9 @@ public class ItemCreate : Singleton<ItemCreate>
     public string GetEquipmentImage(Equipment equipment)
     {
         //TODO
-        EquipmentType equipmentType = equipment.EquipmentType;
-
+        EquipmentSubType equipmentType = equipment.EquipmentSubType;
         string equipmentImagePath = "";
+        
 
         return equipmentImagePath;
     }

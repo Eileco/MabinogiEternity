@@ -17,14 +17,40 @@ public enum ItemType
     IT_TITLE,                    // 称号
 }
 
-//装备类型
-public enum EquipmentType
+//装备主要类型
+public enum EquipmentMainType
+{
+    EPMT_NONE,                   // 空
+    EPMT_PRIMARY_WEAPON,          // 主武器
+    EPMT_SECONDARY_WEAPON,        // 副武器
+    EPMT_ARMOR,                  // 防具
+    EPMT_ACCESSORY,              // 饰品
+}
+
+//装备次要类型
+public enum EquipmentSubType
 {
     EPT_NONE,                    // 空
-    EPT_PRIMARY_WEAPON,          // 主武器
-    EPT_SECONDARY_WEAPON,        // 副武器
-    EPT_ARMOR,                   // 防具
-    EPT_ACCESSORIES,             // 饰品
+    EPT_SWORD,                   // 剑
+    EPT_AXE,                     // 斧头
+    EPT_BOW,                     // 弓
+    EPT_CROSSBOW,                // 弩
+    EPT_WAND,                    // 魔杖
+    EPT_STAFF,                   // 法杖
+    EPT_DAGGER,                  // 匕首
+    EPT_SHIELD,                  // 盾牌
+    EPT_BOOK,                    // 魔法书
+    EPT_CLOTH_HELMET,            // 布帽
+    EPT_LEATHER_HELMET,          // 皮帽
+    EPT_STEEL_HELMET,            // 头盔
+    EPT_CLOTH_ARMOUR,            // 布甲
+    EPT_LEATHER_ARMOUR,          // 皮甲
+    EPT_STEEL_ARMOUR,            // 铠甲
+    EPT_CLOTH_SHOES,             // 布鞋
+    EPT_LEATHER_SHOES,           // 皮靴
+    EPT_STEEL_SHOES,             // 铁靴
+    EPT_RING,                    // 戒指
+    EPT_NECKLACE,                // 项链
 }
 
 //装备品质

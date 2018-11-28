@@ -9,26 +9,23 @@ using UnityEngine;
 
 public class Equipment : ItemBase {
 
-    private EquipmentType equipmentType;               // 装备类型
-    private PrimaryWeaponType primaryWeaponType;
-    private SecondaryWeaponType secondaryWeaponType;
-    private ArmorType armorType;
-    private AccessoriesType accessoriesType;
+    private EquipmentMainType equipmentMainType;       // 装备主要类型
+    private EquipmentSubType equipmentSubType;         // 装备次要类型
     private EquipmentRegionType equipmentRegionType;   // 装备部位类型
     private EquipmentQualityType equipmentQualityType; // 装备品质
     private int enhanceLevel;                          // 强化等级
 
     #region 字段封装
-    public EquipmentType EquipmentType
+    public EquipmentMainType EquipmentMainType
     {
         get
         {
-            return equipmentType;
+            return equipmentMainType;
         }
 
         set
         {
-            equipmentType = value;
+            equipmentMainType = value;
         }
     }
 
@@ -71,56 +68,18 @@ public class Equipment : ItemBase {
         }
     }
 
-    public PrimaryWeaponType PrimaryWeaponType
+    public EquipmentSubType EquipmentSubType
     {
         get
         {
-            return primaryWeaponType;
+            return equipmentSubType;
         }
 
         set
         {
-            primaryWeaponType = value;
+            equipmentSubType = value;
         }
     }
 
-    public SecondaryWeaponType SecondaryWeaponType
-    {
-        get
-        {
-            return secondaryWeaponType;
-        }
-
-        set
-        {
-            secondaryWeaponType = value;
-        }
-    }
-
-    public ArmorType ArmorType
-    {
-        get
-        {
-            return armorType;
-        }
-
-        set
-        {
-            armorType = value;
-        }
-    }
-
-    public AccessoriesType AccessoriesType
-    {
-        get
-        {
-            return accessoriesType;
-        }
-
-        set
-        {
-            accessoriesType = value;
-        }
-    }
     #endregion
 }

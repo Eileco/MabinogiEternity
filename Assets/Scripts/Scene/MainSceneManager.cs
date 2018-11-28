@@ -12,7 +12,8 @@ public class MainSceneManager : MonoBehaviour
 
     private void Awake()
     {
-        CharacterBag.Instance.InitBag();
+        CharacterBag.Instance.InitBag();                //初始化背包
+        StartCoroutine(DataManager.Instance.StartReadXml("XMLData.xml")); 
     }
 
     void Start ()
@@ -51,7 +52,10 @@ public class MainSceneManager : MonoBehaviour
         UIActiveSkill._instance.ResetScrollView();
 
         //生成5把主武器
-        CharacterBag.Instance.AddEquipmentToBag(EquipmentType.EPT_PRIMARY_WEAPON,5);
+        CharacterBag.Instance.AddEquipmentToBag(EquipmentMainType.EPMT_PRIMARY_WEAPON,5);
+        CharacterBag.Instance.AddEquipmentToBag(EquipmentMainType.EPMT_ARMOR, 4);
+        CharacterBag.Instance.AddEquipmentToBag(EquipmentMainType.EPMT_ACCESSORY, 3);
+        CharacterBag.Instance.AddEquipmentToBag(EquipmentMainType.EPMT_SECONDARY_WEAPON, 1);
     }
 
     void Update ()

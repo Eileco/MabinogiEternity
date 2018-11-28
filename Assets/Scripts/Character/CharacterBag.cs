@@ -42,7 +42,7 @@ public class CharacterBag : Singleton<CharacterBag>
     #endregion
 
     /// <summary>
-    /// 添加1把随机主武器到背包
+    /// 初始化背包
     /// </summary>
     public void InitBag()
     {
@@ -52,30 +52,63 @@ public class CharacterBag : Singleton<CharacterBag>
     }
 
     /// <summary>
-    /// 添加1件装备到背包
+    /// 添加1件随机指定类型装备到背包
     /// </summary>
-    public void AddEquipmentToBag(EquipmentType equipmentType, int equipmentCount)
+    public void AddEquipmentToBag(EquipmentMainType equipmentType, int equipmentCount)
     {
         switch (equipmentType)
         {
-            case EquipmentType.EPT_PRIMARY_WEAPON:
-                EquipmentWeapon[] weapons = new EquipmentWeapon[equipmentCount];
-                weapons = ItemCreate.Instance.CreateEquipmentPrimaryWeapon(equipmentCount); 
+            case EquipmentMainType.EPMT_PRIMARY_WEAPON:
+                EquipmentWeapon[] primWeapons = new EquipmentWeapon[equipmentCount];
+                primWeapons = ItemCreate.Instance.CreateEquipmentPrimaryWeapon(equipmentCount); 
                 for (int i = 0; i < equipmentCount; i++)
                 {
                     //添加进背包数组
-                    if (AddEquipmentToBagArray(weapons[i]))
+                    if (AddEquipmentToBagArray(primWeapons[i]))
                     {
                         //显示在背包
-                        UIEquipmentBag._instance.AddEquipmentToBag(weapons[i]);
+                        UIEquipmentBag._instance.AddEquipmentToBag(primWeapons[i]);
                     }
                 }         
                 break;
-            case EquipmentType.EPT_SECONDARY_WEAPON:
+            case EquipmentMainType.EPMT_SECONDARY_WEAPON:
+                EquipmentWeapon[] secdWeapons = new EquipmentWeapon[equipmentCount];
+                secdWeapons = ItemCreate.Instance.CreateEquipmentSecondaryWeapon(equipmentCount);
+                for (int i = 0; i < equipmentCount; i++)
+                {
+                    //添加进背包数组
+                    if (AddEquipmentToBagArray(secdWeapons[i]))
+                    {
+                        //显示在背包
+                        UIEquipmentBag._instance.AddEquipmentToBag(secdWeapons[i]);
+                    }
+                }
                 break;
-            case EquipmentType.EPT_ARMOR:
+            case EquipmentMainType.EPMT_ARMOR:
+                EquipmentArmor[] armors = new EquipmentArmor[equipmentCount];
+                armors = ItemCreate.Instance.CreateEquipmentArmor(equipmentCount);
+                for (int i = 0; i < equipmentCount; i++)
+                {
+                    //添加进背包数组
+                    if (AddEquipmentToBagArray(armors[i]))
+                    {
+                        //显示在背包
+                        UIEquipmentBag._instance.AddEquipmentToBag(armors[i]);
+                    }
+                }
                 break;
-            case EquipmentType.EPT_ACCESSORIES:
+            case EquipmentMainType.EPMT_ACCESSORY:
+                EquipmentAccessories[] accessories = new EquipmentAccessories[equipmentCount];
+                accessories = ItemCreate.Instance.CreateEquipmentAccessories(equipmentCount);
+                for (int i = 0; i < equipmentCount; i++)
+                {
+                    //添加进背包数组
+                    if (AddEquipmentToBagArray(accessories[i]))
+                    {
+                        //显示在背包
+                        UIEquipmentBag._instance.AddEquipmentToBag(accessories[i]);
+                    }
+                }
                 break;
             default:
                 break;
