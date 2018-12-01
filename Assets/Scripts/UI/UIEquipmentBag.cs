@@ -65,45 +65,62 @@ public class UIEquipmentBag : MonoBehaviour {
             string itemImagePath = equipment.ItemImage;
             itemImage.sprite = Resources.Load(itemImagePath, typeof(Sprite)) as Sprite;
             //装备名
-            Text itemName = itemCell.transform.Find("TextEquipName").GetComponent<Text>();
+            Text itemNameText = itemCell.transform.Find("TextEquipName").GetComponent<Text>();
             string itemNameStr = equipment.ItemName;
             int equipmentEnhance = equipment.EnhanceLevel;
             string enhanceLevelStr = equipmentEnhance.ToString();
-            itemName.text = itemNameStr + "  " + enhanceLevelStr;
-            ChangeEquipmentColor(equipment, itemName);
+            if (equipmentEnhance > 0)
+            {
+                itemNameText.text = itemNameStr + " +" + enhanceLevelStr;
+            }
+            ChangeEquipmentNameAndImage(equipment, itemNameText, itemImage);
+            ChangeEquipmentColor(equipment, itemNameText);
         }
 
         return false;
     }
 
     /// <summary>
+    /// 根据装备改变装备名字和图标
+    /// </summary>
+    public void ChangeEquipmentNameAndImage(Equipment equipment, Text itemName, Image itemImage)
+    {
+        string equipmentItemImagePath = equipment.ItemImage;
+        string itemImagePath = "Images/Equipments/" + equipmentItemImagePath;
+        Texture2D imageTexture = (Texture2D)Resources.Load(itemImagePath) as Texture2D;
+        Sprite imageSprite = Sprite.Create(imageTexture, new Rect(0, 0, imageTexture.width, imageTexture.height), new Vector2(0.5f, 0.5f));
+        itemImage.sprite = imageSprite;
+        itemName.text = equipment.ItemName;
+    }
+
+    /// <summary>
     /// 根据装备品质改变装备名字颜色
     /// </summary>
-    public void ChangeEquipmentColor(Equipment equipment, Text text)
+    public void ChangeEquipmentColor(Equipment equipment, Text itemNameText)
     {
-        if (text == null)
+        if (itemNameText == null)
         {
             return;
         }
         switch (equipment.EquipmentQualityType)
         {
             case EquipmentQualityType.EQT_ORDINARY:
-                text.color = Macro.Instance.ORE_COLOR_RGB;
+                itemNameText.color = Macro.Instance.ORE_COLOR_RGB;
                 break;
             case EquipmentQualityType.EQT_GOOD:
-                text.color = Macro.Instance.GOOD_COLOR_RGB;
+                itemNameText.color = Macro.Instance.GOOD_COLOR_RGB;
                 break;
             case EquipmentQualityType.EQT_EXCELLENT:
-                text.color = Macro.Instance.EXCE_COLOR_RGB;
+                itemNameText.color = Macro.Instance.EXCE_COLOR_RGB;
                 break;
             case EquipmentQualityType.EQT_PERFECT:
-                text.color = Macro.Instance.PREF_COLOR_RGB;
+                itemNameText.color = Macro.Instance.PREF_COLOR_RGB;
                 break;
             case EquipmentQualityType.EQT_EPIC:
-                text.color = Macro.Instance.EPIC_COLOR_RGB;
+                itemNameText.color = Macro.Instance.EPIC_COLOR_RGB;
                 break;
             case EquipmentQualityType.EQT_LEGEND:
-                text.color = Macro.Instance.LEG_COLOR_RGB;
+                itemNameText.color = Macro.Instance.LEG_COLOR_RGB;
                 break;
             default:
                 break;

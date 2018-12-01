@@ -179,11 +179,11 @@ public class Macro : Singleton<Macro>
     public const int REALTIME_CELL_MAX_COUNT = 60;
 
     /*  资源路径   */
-    public const string BAG_ITEM_CELL_PATH = "PrefabItemCell";                 // 背包装备Prefab
-    public const string ACTIVE_SKILL_CELL_PATH = "PrefabActiveSkillCell";      // 技能释放Prefab
-    public const string REALTIME_CELL_PATH = "PrefabRealTimeCell";             // 实时信息Prefab
-    public const string TITLE_CELL_PATH = "PrefabTitleCell";                   // 称号Prefab
-    public const string SKILL_CELL_PATH = "PrefabSkillCell";                   // 技能Prefab
+    public const string BAG_ITEM_CELL_PATH = "Prefabs/PrefabItemCell";                 // 背包装备Prefab
+    public const string ACTIVE_SKILL_CELL_PATH = "Prefabs/PrefabActiveSkillCell";      // 技能释放Prefab
+    public const string REALTIME_CELL_PATH = "Prefabs/PrefabRealTimeCell";             // 实时信息Prefab
+    public const string TITLE_CELL_PATH = "Prefabs/PrefabTitleCell";                   // 称号Prefab
+    public const string SKILL_CELL_PATH = "Prefabs/PrefabSkillCell";                   // 技能Prefab
 
 
     /*  品质颜色   */

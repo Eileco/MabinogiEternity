@@ -122,13 +122,14 @@ public class CharacterBag : Singleton<CharacterBag>
     {
         if (equipment != null)
         {
-            if (curEquipCount <= maxEquipCount)
+            if (curEquipCount < maxEquipCount)
             {
                 equipments[curEquipCount] = equipment;
                 curEquipCount++;
                 return true;
             }            
         }
+        Debug.LogError("AddEquipmentToBagArray INDEX ERROR");
         return false;
     }
 }

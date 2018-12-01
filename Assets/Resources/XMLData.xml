@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<IT_EQUIPMENT>
+  <Equipment  id="1"   name="单手剑"   itemImage="Sword"         regionType="1"  />
+  <Equipment  id="2"   name="双手斧"   itemImage="Axe"           regionType="2"  />
+  <Equipment  id="3"   name="弓"       itemImage="Bow"           regionType="2"  />
+  <Equipment  id="4"   name="十字弩"   itemImage="Crossbow"      regionType="2"  />
+  <Equipment  id="5"   name="魔杖"     itemImage="Wand"          regionType="1"  />
+  <Equipment  id="6"   name="法杖"     itemImage="Staff"         regionType="2"  />
+  <Equipment  id="7"   name="匕首"     itemImage="Dagger"        regionType="3"  />
+  <Equipment  id="8"   name="盾牌"     itemImage="Shield"        regionType="3"  />
+  <Equipment  id="9"   name="魔法书"   itemImage="Book"          regionType="3"  />
+  <Equipment  id="10"  name="布帽"     itemImage="ClothHelmet"   regionType="4"  />
+  <Equipment  id="11"  name="布衣"     itemImage="ClothArmour"   regionType="5"  />
+  <Equipment  id="12"  name="布鞋"     itemImage="ClothShoes"    regionType="6"  />
+  <Equipment  id="13"  name="皮帽"     itemImage="LeatherHelmet" regionType="4"   />
+  <Equipment  id="14"  name="皮甲"     itemImage="LeatherArmour" regionType="5"   />
+  <Equipment  id="15"  name="皮靴"     itemImage="LeatherShoes"  regionType="6"   />
+  <Equipment  id="16"  name="头盔"     itemImage="SteelHelmet"   regionType="4"   />
+  <Equipment  id="17"  name="铠甲"     itemImage="SteelArmour"   regionType="5"   />
+  <Equipment  id="18"  name="铁靴"     itemImage="SteelShoes"    regionType="6"   />
+  <Equipment  id="19"  name="戒指"     itemImage="Ring"          regionType="8"   />
+  <Equipment  id="20"  name="项链"     itemImage="Necklace"      regionType="7"   />
+</IT_EQUIPMENT>

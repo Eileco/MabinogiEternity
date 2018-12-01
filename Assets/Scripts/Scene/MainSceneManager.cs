@@ -12,8 +12,12 @@ public class MainSceneManager : MonoBehaviour
 
     private void Awake()
     {
-        CharacterBag.Instance.InitBag();                //初始化背包
-        StartCoroutine(DataManager.Instance.StartReadXml("XMLData.xml")); 
+        //初始化信息存储
+        InfoManager.Instance.InitDicts();
+        //初始化背包
+        CharacterBag.Instance.InitBag();      
+        //读取XML表
+        StartCoroutine(DataManager.Instance.StartReadXml("XMLData.xml", ItemType.IT_EQUIPMENT)); 
     }
 
     void Start ()

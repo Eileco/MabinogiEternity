@@ -9,6 +9,7 @@ using UnityEngine;
 
 public class ItemBase
 {
+    private int id;                      // 物品ID
     private ItemType itemType;           // 物品类型
     private string itemName;             // 物品名称
     private string itemImage;            // 物品图标
@@ -64,6 +65,19 @@ public class ItemBase
         set
         {
             itemPrice = value;
+        }
+    }
+
+    public int Id
+    {
+        get
+        {
+            return id;
+        }
+
+        set
+        {
+            id = value;
         }
     }
     #endregion
