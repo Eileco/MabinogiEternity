@@ -18,6 +18,7 @@ public class InfoStatistics : MonoBehaviour
     private int curEquipEpicCnt;       // 当前地图获得史诗装备
     private int curEquipLegCnt;        // 当前地图获得传说装备
 
+    #region 字段封装
     public long CurGainGold {
         get{return curGainGold; }
         set { curGainGold = value;}
@@ -57,6 +58,7 @@ public class InfoStatistics : MonoBehaviour
         get { return curEquipLegCnt; }
         set { curEquipLegCnt = value; }
     }
+    #endregion
 
     //重置当前地图掉落统计
     public void ResetCurMapStatistics()
