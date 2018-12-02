@@ -21,8 +21,8 @@ public enum ItemType
 public enum EquipmentMainType
 {
     EPMT_NONE,                   // 空
-    EPMT_PRIMARY_WEAPON,          // 主武器
-    EPMT_SECONDARY_WEAPON,        // 副武器
+    EPMT_PRIMARY_WEAPON,         // 主武器
+    EPMT_SECONDARY_WEAPON,       // 副武器
     EPMT_ARMOR,                  // 防具
     EPMT_ACCESSORY,              // 饰品
 }
@@ -124,6 +124,8 @@ public enum ArmorType
     AMT_STEEL_SHOES,             // 铁靴
 }
 
+public enum 
+
 //防具材质类型
 public enum ArmorTextureType
 {
@@ -184,6 +186,7 @@ public class Macro : Singleton<Macro>
     public const string REALTIME_CELL_PATH = "Prefabs/PrefabRealTimeCell";             // 实时信息Prefab
     public const string TITLE_CELL_PATH = "Prefabs/PrefabTitleCell";                   // 称号Prefab
     public const string SKILL_CELL_PATH = "Prefabs/PrefabSkillCell";                   // 技能Prefab
+    public const string INFO_AFFIX_CELL_PATH = "Prefabs/PrefabAffixCell";              // 装备额外词缀Prefab
 
 
     /*  品质颜色   */

@@ -13,21 +13,45 @@ public class UIEquipmentBag : MonoBehaviour {
     public static UIEquipmentBag _instance;
 
     private GameObject prefabItemCell;          // 装备栏预制体cell
+    private GameObject prefabInfoAffixCell;     // 装备信息词缀cell
 
     private Text textEquipCount;                // text装备数量
     private Text textEquipMaxCount;             // text装备容量
     private GameObject bagContentContainer;     // 背包滑动列表容器
 
+    //按钮
     private Text textEnhanceCost;               // 强化费用
     private Text textEnhanceChance;             // 强化成功率
     private Toggle btnSoundEffect;              // 音效开关
     private Toggle btnAutoEnhance;              // 自动强化开关
     private Button btnEnhance;                  // 强化按钮
 
+    //装备信息
+    private const float infoInitialHeight=92.5f;// 装备信息框初始高度
+    private bool isCurItemInfoShow;             // 当前装备信息是否打开
+    private GameObject bgCurItemInfo;           // 当前装备信息
+    private Text textCurItemName;               // 当前名字
+    private Text textCurItemSubType;            // 当前次要类型
+    private GameObject bgPrimWeapon;            // 主武器底板
+    private GameObject bgSecdWeapon;            // 副武器底板
+    private GameObject bgArmor;                 // 护甲底板
+    private GameObject bgAccessory;             // 饰品底板
+    private Text textPrimMinAtk;                // 主武器最小攻击
+    private Text textPrimMaxAtk;                // 主武器最大攻击
+    private Text textPrimBalece;                // 主武器平衡
+    private Text textPrimCritical;              // 主武器暴击
+    private Text textSecdMinAtk;                // 副武器最小攻击
+    private Text textSecdMaxAtk;                // 副武器最大攻击
+    private Text textSecdCritical;              // 副武器暴击
+    private Text textArmorDefence;              // 防具防御
+    private Text textArmorArmour;               // 防具护甲
+
     private void Awake()
     {
         _instance = this;
+        isCurItemInfoShow = false;
         prefabItemCell = Resources.Load(Macro.BAG_ITEM_CELL_PATH) as GameObject;
+        prefabInfoAffixCell = Resources.Load(Macro.INFO_AFFIX_CELL_PATH) as GameObject;
         textEquipCount = this.transform.Find("BGMenu/BGBag/TextBagItemCount").GetComponent<Text>();
         textEquipMaxCount = this.transform.Find("BGMenu/BGBag/TextBagItemCount/TextBagItemMaxCount").GetComponent<Text>();
         textEnhanceCost = this.transform.Find("BGMenu/BGBag/BGEnhance/EnhanceCost/TextEnhanceCost").GetComponent<Text>();
@@ -36,6 +60,22 @@ public class UIEquipmentBag : MonoBehaviour {
         btnAutoEnhance = this.transform.Find("BGMenu/BGBag/BGEnhance/AutoEnhanceSwitch").GetComponent<Toggle>();
         btnEnhance = this.transform.Find("BGMenu/BGBag/BGEnhance/BtnEnhance").GetComponent<Button>();
         bagContentContainer = this.transform.Find("BGMenu/BGBag/ItemScroll/Viewport/Content").gameObject;
+        bgCurItemInfo = this.transform.Find("BGMenu/BGBag/ItemScroll/BGItemInfo").gameObject;
+        textCurItemName = bgCurItemInfo.transform.Find("TextItemName").GetComponent<Text>();
+        textCurItemSubType = bgCurItemInfo.transform.Find("TextItemSubType").GetComponent<Text>();
+        bgPrimWeapon = bgCurItemInfo.transform.Find("TypePrimWeapon").gameObject;
+        bgSecdWeapon = bgCurItemInfo.transform.Find("TypeSecdWeapon").gameObject;
+        bgArmor = bgCurItemInfo.transform.Find("TypeArmor").gameObject;
+        bgAccessory = bgCurItemInfo.transform.Find("TypeAccessory").gameObject;
+        textPrimMinAtk = bgPrimWeapon.transform.Find("Atk/TextMinAtk").GetComponent<Text>();
+        textPrimMaxAtk = bgPrimWeapon.transform.Find("Atk/TextMinAtk/TextMaxAtk").GetComponent<Text>();
+        textPrimBalece = bgPrimWeapon.transform.Find("Balance/TextBalance").GetComponent<Text>();
+        textPrimMinAtk = bgPrimWeapon.transform.Find("Critical/TextCritical").GetComponent<Text>();
+        textSecdMinAtk = bgSecdWeapon.transform.Find("Atk/TextMinAtk").GetComponent<Text>();
+        textSecdMaxAtk = bgSecdWeapon.transform.Find("Atk/TextMinAtk/TextMaxAtk").GetComponent<Text>();
+        textSecdCritical = bgSecdWeapon.transform.Find("Critical/TextCritical").GetComponent<Text>();
+        textArmorDefence = bgArmor.transform.Find("Defence/TextDefence").GetComponent<Text>();
+        textArmorArmour = bgArmor.transform.Find("Armour/TextArmour").GetComponent<Text>();
     }
 
     void Start ()
@@ -75,6 +115,17 @@ public class UIEquipmentBag : MonoBehaviour {
             }
             ChangeEquipmentNameAndImage(equipment, itemNameText, itemImage);
             ChangeEquipmentColor(equipment, itemNameText);
+            //添加按钮监听
+            Button itemBtn = itemCell.GetComponent<Button>();
+            itemBtn.onClick.AddListener(delegate()
+            {
+                OnEquipmentClick(equipment);
+            });
+        }
+        else
+        {
+            Debug.LogError("AddEquipmentToBag ERUIPMENT ERROR");
+            Destroy(itemCell);
         }
 
         return false;
@@ -127,4 +178,78 @@ public class UIEquipmentBag : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// 设置装备信息框
+    /// </summary>
+    public void SetEquipmentInfo(Equipment equipment)
+    {
+        EquipmentMainType equipmentMainType = equipment.EquipmentMainType;
+        int qualityLV = (int)equipment.EquipmentQualityType;    // 物品品质等级
+        int cellCount = 0;                                      // 词缀个数
+        switch (equipmentMainType)
+        {
+            case EquipmentMainType.EPMT_PRIMARY_WEAPON:
+                bgPrimWeapon.SetActive(true);
+                cellCount = 3 + qualityLV;
+                break;
+            case EquipmentMainType.EPMT_SECONDARY_WEAPON:
+                bgPrimWeapon.SetActive(true);
+                cellCount = 2 + qualityLV;
+                break;
+            case EquipmentMainType.EPMT_ARMOR:
+                bgArmor.SetActive(true);
+                cellCount = 2 + qualityLV;
+                break;
+            case EquipmentMainType.EPMT_ACCESSORY:
+                bgAccessory.SetActive(true);
+                cellCount = qualityLV;
+                break;
+            default:
+                break;
+        }
+        
+        RectTransform rtInfo = bgCurItemInfo.transform.GetComponent<RectTransform>();       // 背景框长度
+        rtInfo.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, infoInitialHeight + 30 * cellCount);   // 设置高度对应词缀数量
+        //设置数值
+        textCurItemName.text = equipment.ItemName;
+        ChangeEquipmentColor(equipment, textCurItemName);
+        //string strSubType = equipment.EquipmentRegionType
+    }
+
+    /// <summary>
+    /// 重置装备信息框
+    /// </summary>
+    public void ResetEquipmentInfo()
+    {
+        //TODO
+        //隐藏所有属性
+        bgPrimWeapon.SetActive(false);
+        bgSecdWeapon.SetActive(false);
+        bgArmor.SetActive(false);
+        bgAccessory.SetActive(false);
+        //重置背景框
+        RectTransform rtInfo = bgCurItemInfo.transform.GetComponent<RectTransform>();       // 背景框长度
+        rtInfo.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, infoInitialHeight);   // 设置为初始高度
+    }
+
+
+    /*  /////////////////////////////////////按钮监听////////////////////////////////////////  */
+    /// <summary>
+    /// 背包装备点击
+    /// </summary>
+    public void OnEquipmentClick(Equipment equipment)
+    {
+        if (isCurItemInfoShow == false)
+        {
+            bgCurItemInfo.SetActive(true);
+            SetEquipmentInfo(equipment);
+            isCurItemInfoShow = true;
+        }
+        else
+        {
+            bgCurItemInfo.SetActive(false);
+            ResetEquipmentInfo();
+            isCurItemInfoShow = false;
+        }
+    }
 }
