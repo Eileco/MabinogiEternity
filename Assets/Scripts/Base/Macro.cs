@@ -124,7 +124,6 @@ public enum ArmorType
     AMT_STEEL_SHOES,             // 铁靴
 }
 
-public enum 
 
 //防具材质类型
 public enum ArmorTextureType

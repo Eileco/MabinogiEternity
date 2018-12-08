@@ -12,7 +12,7 @@ public class InfoManager : Singleton<InfoManager>
     public Dictionary<int, Equipment> equipmentDict;
 
     /// <summary>
-    /// 添加1件随机指定类型装备到背包
+    /// 初始化装备Dict
     /// </summary>
 	public void InitDicts()
     {
