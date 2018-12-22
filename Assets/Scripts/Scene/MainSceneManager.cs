@@ -60,11 +60,21 @@ public class MainSceneManager : MonoBehaviour
         CharacterBag.Instance.AddEquipmentToBag(EquipmentMainType.EPMT_ARMOR, 4);
         CharacterBag.Instance.AddEquipmentToBag(EquipmentMainType.EPMT_ACCESSORY, 3);
         CharacterBag.Instance.AddEquipmentToBag(EquipmentMainType.EPMT_SECONDARY_WEAPON, 1);
+
+        
     }
 
     void Update ()
     {
         //实时追踪显示HpMpExp
         UICharacterState._instance.UpdateCharacterHpMpExp();
+
+        StartCoroutine(EternityBattle(1.0f));
+    }
+
+    IEnumerator EternityBattle(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        Debug.Log("Battle");
     }
 }
